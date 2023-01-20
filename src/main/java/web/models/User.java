@@ -1,4 +1,4 @@
-package allDirectories.models;
+package web.models;
 
 import javax.persistence.*;
 import java.util.Objects;

@@ -1,10 +1,10 @@
-package allDirectories.dao;
+package web.service;
 
-import allDirectories.models.User;
+import web.models.User;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserService {
 
     List<User> getAllUsers();
 

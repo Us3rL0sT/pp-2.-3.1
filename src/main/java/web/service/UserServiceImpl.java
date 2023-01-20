@@ -1,7 +1,7 @@
-package allDirectories.service;
+package web.service;
 
-import allDirectories.dao.UserDao;
-import allDirectories.models.User;
+import web.dao.UserDao;
+import web.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

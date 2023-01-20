@@ -1,4 +1,4 @@
-package allDirectories.config;
+package web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -28,7 +28,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("allDirectories")
+@ComponentScan("web")
 @PropertySource("classpath:hibernate.properties")
 @EnableWebMvc
 @EnableTransactionManagement
@@ -76,7 +76,7 @@ public class SpringConfig implements WebMvcConfigurer {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("allDirectories.models");
+        em.setPackagesToScan("web.models");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

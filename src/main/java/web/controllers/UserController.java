@@ -1,7 +1,7 @@
-package allDirectories.controllers;
+package web.controllers;
 
-import allDirectories.models.User;
-import allDirectories.service.UserService;
+import web.models.User;
+import web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,8 +51,8 @@ public class UserController {
     }
 
     @RequestMapping("/{id}")
-    public String patchEdit(@ModelAttribute("user") User user,
-                            @PathVariable("id") int id) {
+    public String requestEdit(@ModelAttribute("user") User user,
+                              @PathVariable("id") int id) {
         userService.update(id, user);
         return "redirect:/";
     }

@@ -1,8 +1,7 @@
-package allDirectories.dao;
+package web.dao;
 
-import allDirectories.models.User;
+import web.models.User;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
