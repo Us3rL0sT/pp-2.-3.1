@@ -45,13 +45,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}/edit")
-    public String editUser(Model model, @PathVariable("id") int id) {
+    public String editPage(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.get(id));
         return "edit";
     }
 
     @RequestMapping("/{id}")
-    public String requestEdit(@ModelAttribute("user") User user,
+    public String editUser(@ModelAttribute("user") User user,
                               @PathVariable("id") int id) {
         userService.update(id, user);
         return "redirect:/";
