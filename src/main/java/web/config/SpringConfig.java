@@ -36,12 +36,10 @@ public class SpringConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
 
-    private final Environment env;
 
     @Autowired
-    public SpringConfig(ApplicationContext applicationContext, Environment environment) {
+    public SpringConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
-        this.env = environment;
     }
 
     @Bean
@@ -71,57 +69,20 @@ public class SpringConfig implements WebMvcConfigurer {
         registry.viewResolver(resolver);
     }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean em
-                = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
-        em.setPackagesToScan("web.models");
 
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        em.setJpaVendorAdapter(vendorAdapter);
-        em.setJpaProperties(hibernateProperties());
 
-        return em;
-    }
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-        dataSource.setDriverClassName(env.getRequiredProperty("hibernate.driver_class"));
-        dataSource.setUrl(env.getRequiredProperty("hibernate.connection.url"));
-        dataSource.setUsername(env.getRequiredProperty("hibernate.connection.username"));
-        dataSource.setPassword(env.getRequiredProperty("hibernate.connection.password"));
-        return dataSource;
-    }
 
-    private Properties hibernateProperties() {
-        Properties properties = new Properties();
-        properties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
-        properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
 
-        return properties;
-    }
 
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-
-        return transactionManager;
-    }
 
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    @Bean
-    public EntityManager entityManager() {
-        EntityManagerFactory entityManagerFactory = entityManagerFactory().getObject();
-        return entityManagerFactory.createEntityManager();
-    }
+
 
 
 }
