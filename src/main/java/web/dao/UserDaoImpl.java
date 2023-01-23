@@ -26,24 +26,24 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void removeUserById(int id) {
         User user = entityManager.find(User.class, id);
         entityManager.remove(user);
     }
 
     @Override
-    public void add(User user) {
+    public void addUser(User user) {
         entityManager.persist(user);
     }
 
     @Override
-    public void update(int id, User user) {
+    public void updateUser(int id, User user) {
         User updatedUser = entityManager.find(User.class, id);
         updatedUser.setName(user.getName());
         updatedUser.setAge(user.getAge());
     }
     @Override
-    public User get(int id) {
+    public User getUserById(int id) {
         return entityManager.find(User.class, id);
     }
 }
